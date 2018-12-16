@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -22,7 +23,7 @@ namespace DesktopApp1
 {
 	public partial class Form1 : Form
 	{
-		static string baseAddress = "http://www.omdbapi.com/?i=tt3896198&apikey=edefce46";
+		static string baseAddress = "http://www.omdbapi.com/?&apikey=edefce46";
 
 		public Form1()
 		{
@@ -346,7 +347,7 @@ namespace DesktopApp1
 			}
 		}
 
-		private void DisplayMovieInfo(Movie currentMovie)
+		public void DisplayMovieInfo(Movie currentMovie)
 		{
 
 			label2.Text = currentMovie.movieName + " (" + currentMovie.movieYear + ")";
@@ -411,6 +412,31 @@ namespace DesktopApp1
 		private void pictureBox1_Click(object sender, EventArgs e)
 		{
 
+		}
+
+		private void button3_Click(object sender, EventArgs e)
+		{
+
+			int watchlistEntryPos;
+
+			ArrayList wishlist = new ArrayList(System.IO.File.ReadAllLines("C:/Users/Student/Desktop/test1.txt"));
+
+			if (wishlist.Count == 0)
+			{
+				watchlistEntryPos = 1;
+			}
+			else
+			{
+				watchlistEntryPos = wishlist.Count + 1;
+			}
+
+			int x = watchlistEntryPos;
+			string z = currentMovie.imdbID;
+			string a = "";
+
+			string singleString = z + a;
+
+			System.IO.File.WriteAllText("C:/Users/Student/Desktop/text1.txt", singleString);
 		}
 	}
 }
