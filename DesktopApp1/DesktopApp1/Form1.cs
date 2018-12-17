@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -23,7 +21,7 @@ namespace DesktopApp1
 {
 	public partial class Form1 : Form
 	{
-		static string baseAddress = "http://www.omdbapi.com/?&apikey=edefce46";
+		static string baseAddress = "http://www.omdbapi.com/?i=tt3896198&apikey=edefce46";
 
 		public Form1()
 		{
@@ -347,7 +345,7 @@ namespace DesktopApp1
 			}
 		}
 
-		public void DisplayMovieInfo(Movie currentMovie)
+		private void DisplayMovieInfo(Movie currentMovie)
 		{
 
 			label2.Text = currentMovie.movieName + " (" + currentMovie.movieYear + ")";
@@ -414,29 +412,61 @@ namespace DesktopApp1
 
 		}
 
-		private void button3_Click(object sender, EventArgs e)
+		private void label2_Click(object sender, EventArgs e)
 		{
 
-			int watchlistEntryPos;
-
-			ArrayList wishlist = new ArrayList(System.IO.File.ReadAllLines("C:/Users/Student/Desktop/test1.txt"));
-
-			if (wishlist.Count == 0)
-			{
-				watchlistEntryPos = 1;
-			}
-			else
-			{
-				watchlistEntryPos = wishlist.Count + 1;
-			}
-
-			int x = watchlistEntryPos;
-			string z = currentMovie.imdbID;
-			string a = "";
-
-			string singleString = z + a;
-
-			System.IO.File.WriteAllText("C:/Users/Student/Desktop/text1.txt", singleString);
 		}
+
+		private void label7_Click(object sender, EventArgs e)
+		{
+
+		}
+
+		private void label1_Click(object sender, EventArgs e)
+		{
+
+		}
+
+		private void label15_Click(object sender, EventArgs e)
+		{
+
+		}
+
+		private void label16_Click(object sender, EventArgs e)
+		{
+
+		}
+
+		private void label6_Click(object sender, EventArgs e)
+		{
+
+		}
+
+		private void label8_Click(object sender, EventArgs e)
+		{
+
+		}
+
+		private void label5_Click(object sender, EventArgs e)
+		{
+
+		}
+
+		private void label4_Click(object sender, EventArgs e)
+		{
+
+		}
+
+		private void label3_Click(object sender, EventArgs e)
+		{
+
+		}
+
+	
+
+		private void button4_Click(object sender, EventArgs e)
+		{
+		}
+		
 	}
 }
