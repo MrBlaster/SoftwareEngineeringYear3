@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -23,7 +21,7 @@ namespace DesktopApp1
 {
 	public partial class Form1 : Form
 	{
-		static string baseAddress = "http://www.omdbapi.com/?&apikey=edefce46";
+		static string baseAddress = "http://www.omdbapi.com/?apikey=edefce46";
 
 		public Form1()
 		{
@@ -347,7 +345,7 @@ namespace DesktopApp1
 			}
 		}
 
-		public void DisplayMovieInfo(Movie currentMovie)
+		private void DisplayMovieInfo(Movie currentMovie)
 		{
 
 			label2.Text = currentMovie.movieName + " (" + currentMovie.movieYear + ")";
@@ -409,34 +407,34 @@ namespace DesktopApp1
 			}
 		}
 
-		private void pictureBox1_Click(object sender, EventArgs e)
+		private void button2_Click(object sender, EventArgs e)
 		{
+			client = new HttpClient();
 
-		}
+			Random rnd = new Random();
 
-		private void button3_Click(object sender, EventArgs e)
-		{
+			string y = Convert.ToString(rnd.Next(1, 2155529) + 1);
 
-			int watchlistEntryPos;
-
-			ArrayList wishlist = new ArrayList(System.IO.File.ReadAllLines("C:/Users/Student/Desktop/test1.txt"));
-
-			if (wishlist.Count == 0)
+			while (y.Length < 7)
 			{
-				watchlistEntryPos = 1;
-			}
-			else
-			{
-				watchlistEntryPos = wishlist.Count + 1;
+				y = "0" + y;
 			}
 
-			int x = watchlistEntryPos;
-			string z = currentMovie.imdbID;
-			string a = "";
+			string randomID = "tt" + y;
 
-			string singleString = z + a;
+			string plaintextResponse = RunAsync(baseAddress, randomID).GetAwaiter().GetResult();
 
-			System.IO.File.WriteAllText("C:/Users/Student/Desktop/text1.txt", singleString);
+			/*if (x.Contains("Episode"))
+            {
+                randomButton_Click(this, e);
+            }*/
+
+			currentMovie = GenerateMovie(plaintextResponse);
+
+			if (!plaintextResponse.Contains("Error"))
+			{
+				DisplayMovieInfo(currentMovie);
+			}
 		}
 	}
 }
